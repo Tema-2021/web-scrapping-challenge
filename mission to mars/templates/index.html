@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mission to Mars</title>
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+   crossorigin="anonymous">
+</head>
+<body class='text-white'style="background-color:black;" >
+  <div class="container">
+
+    <!-- Jumbotron -->
+    <div class="jumbotron text-center" style="background-image: url(https://www.wallpaperbetter.com/wallpaper/897/576/61/mars-planet-space-1080P-wallpaper.jpg); background-size: 100%; height: 100%;">
+        <h1 class="display-4" >Mission to Mars</h1>
+        <a class="btn btn-lg text-white" style="background-color:rgb(58, 58, 128);" href="/scrape" role="button">Scrape New
+            Data</a>
+    </div>
+    <!---Mars News scraping-->
+    <div class="container">
+        <h2>Latest Mars News</h2>
+        <h4 style="color:rgb(42, 85, 85)">{{final_data.title}}</h4>
+        <p>{{final_data.paragraph}}</p>
+    </div>
+
+    <div class="container">
+      <div class='row'>
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xm-12">
+        <h3>Featured Mars Image</h3>
+        <img src= "{{final_data.feature_img_url}}" style="max-width:100%; max-height: auto;" alt="featured_img_url">
+              
+            </div>
+          </div>
+          <!-- Table -->
+          <br>
+          <h5>Mars Facts</h5>
+          <table>{{ final_data.facts_html |safe}}</table>
+        </br>
+        </div>
+      </div>
+      </body>
+    </div><!---container for image and table closed-->
+    <br>
+    <h3 style="padding-top:30px; text-align: center;">Mars Hemispheres</h3>
+    <div class='card-deck'>
+      <div class='col-md-12'>
+          <div class="row">
+              {% for image in final_data.images %}
+              <div class="col-md-6">
+                  <div class="card text-white bg-dark" style="margin: 30px;">
+                      <img class="card-img-top" src="{{image.img_url}}" />
+                      <div class="card-body">
+                        <p>{{final_data.hemisphere_title}}</p> 
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+            </br>
+          </div>
+          </div>
+            </div>
+            </div>
+      </div>
+    </div>
+
+
+  </div> <!---body->container closed-->
+</body>
+
+</html>
