@@ -52,6 +52,8 @@ def scrape():
 
     #parse HTML with beautiful soup
     facts_soup = bs(facts_html, 'html.parser')
+    facts_data = facts_soup.find('table', class_='table table-striped')
+    print(facts_data)
 
     #Create Dataframe to store facts_table
     facts_table_df = facts_table[0]
