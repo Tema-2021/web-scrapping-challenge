@@ -82,13 +82,23 @@ def scrape():
     for x in url:
         time.sleep(2)
         hemisphere_title = x.find('h3').text
-        #print(title)
-        img_url = hemispheres_url + hemisphere_title
+        #print(hemisphere_title)
+        url1 = x.find('a', class_= 'itemLink product-item')['href']
+        #print(url1)
+        url2 = hemispheres_url + url1
+        #print(url2)
+        browser.visit(url2)
+        html = browser.html
+        soup = bs(html,'html.parser')
+        # navigate to individual images
+        src = soup.find('img', class_='wide-image').get('src')
+        #print(src)
+        img_url = hemispheres_url + src 
         #print(img_url)
         dictionary={"hemisphere_title": hemisphere_title,"img_url":img_url}
-        dictionary_copy = dictionary.copy()
+        #dictionary_copy = dictionary.copy()
         #print(dictionary_copy)
-        hemispheres_img_url.append(dictionary_copy)
+        hemispheres_img_url.append(dictionary)     
     
 
     final_data = {
@@ -96,7 +106,7 @@ def scrape():
         'paragraph' : paragraph,
         'feature_img_url': featured_img_url,
         'table': facts_html, 
-        'hemisphere_title':  hemisphere_title, 
+        #'hemisphere_title':  hemisphere_title, 
         'images': hemispheres_img_url
     }
 
